@@ -13,6 +13,20 @@
 		B52DF74F1CE7114C00C8EFAD /* TopUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF74E1CE7114C00C8EFAD /* TopUserViewController.m */; };
 		B52DF7531CE7117D00C8EFAD /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7521CE7117D00C8EFAD /* AboutViewController.m */; };
 		B52DF7561CE729F900C8EFAD /* AboutItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7551CE729F900C8EFAD /* AboutItemViewController.m */; };
+		B52DF7661CE741B600C8EFAD /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7581CE741B600C8EFAD /* UserCell.m */; };
+		B52DF7671CE741B600C8EFAD /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B52DF7591CE741B600C8EFAD /* UserCell.xib */; };
+		B52DF7681CE741B600C8EFAD /* UserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF75B1CE741B600C8EFAD /* UserDetail.m */; };
+		B52DF7691CE741B600C8EFAD /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF75D1CE741B600C8EFAD /* UserDetailCell.m */; };
+		B52DF76A1CE741B600C8EFAD /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B52DF75E1CE741B600C8EFAD /* UserDetailCell.xib */; };
+		B52DF76B1CE741B600C8EFAD /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7601CE741B600C8EFAD /* UserModel.m */; };
+		B52DF76C1CE741B600C8EFAD /* UserSrch.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7621CE741B600C8EFAD /* UserSrch.m */; };
+		B52DF76D1CE741B600C8EFAD /* UserSrchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7641CE741B600C8EFAD /* UserSrchCell.m */; };
+		B52DF76E1CE741B600C8EFAD /* UserSrchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B52DF7651CE741B600C8EFAD /* UserSrchCell.xib */; };
+		B52DF7781CE7443200C8EFAD /* Polor7View.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7701CE7443200C8EFAD /* Polor7View.m */; };
+		B52DF7791CE7443200C8EFAD /* TopAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7721CE7443200C8EFAD /* TopAnswer.m */; };
+		B52DF77A1CE7443200C8EFAD /* TopAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7741CE7443200C8EFAD /* TopAnswerCell.m */; };
+		B52DF77B1CE7443200C8EFAD /* TopAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B52DF7751CE7443200C8EFAD /* TopAnswerCell.xib */; };
+		B52DF77C1CE7443200C8EFAD /* TrendView.m in Sources */ = {isa = PBXBuildFile; fileRef = B52DF7771CE7443200C8EFAD /* TrendView.m */; };
 		B53AFAF11CE40D4A00BA6E7E /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B53AFAED1CE40D4A00BA6E7E /* NewsCell.m */; };
 		B53AFAF21CE40D4A00BA6E7E /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B53AFAEE1CE40D4A00BA6E7E /* NewsCell.xib */; };
 		B53AFAF31CE40D4A00BA6E7E /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B53AFAF01CE40D4A00BA6E7E /* NewsModel.m */; };
@@ -41,6 +55,30 @@
 		B52DF7521CE7117D00C8EFAD /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		B52DF7541CE729F900C8EFAD /* AboutItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutItemViewController.h; sourceTree = "<group>"; };
 		B52DF7551CE729F900C8EFAD /* AboutItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutItemViewController.m; sourceTree = "<group>"; };
+		B52DF7571CE741B600C8EFAD /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		B52DF7581CE741B600C8EFAD /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		B52DF7591CE741B600C8EFAD /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		B52DF75A1CE741B600C8EFAD /* UserDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetail.h; sourceTree = "<group>"; };
+		B52DF75B1CE741B600C8EFAD /* UserDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetail.m; sourceTree = "<group>"; };
+		B52DF75C1CE741B600C8EFAD /* UserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailCell.h; sourceTree = "<group>"; };
+		B52DF75D1CE741B600C8EFAD /* UserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailCell.m; sourceTree = "<group>"; };
+		B52DF75E1CE741B600C8EFAD /* UserDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailCell.xib; sourceTree = "<group>"; };
+		B52DF75F1CE741B600C8EFAD /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		B52DF7601CE741B600C8EFAD /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		B52DF7611CE741B600C8EFAD /* UserSrch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSrch.h; sourceTree = "<group>"; };
+		B52DF7621CE741B600C8EFAD /* UserSrch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSrch.m; sourceTree = "<group>"; };
+		B52DF7631CE741B600C8EFAD /* UserSrchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSrchCell.h; sourceTree = "<group>"; };
+		B52DF7641CE741B600C8EFAD /* UserSrchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSrchCell.m; sourceTree = "<group>"; };
+		B52DF7651CE741B600C8EFAD /* UserSrchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSrchCell.xib; sourceTree = "<group>"; };
+		B52DF76F1CE7443200C8EFAD /* Polor7View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polor7View.h; sourceTree = "<group>"; };
+		B52DF7701CE7443200C8EFAD /* Polor7View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Polor7View.m; sourceTree = "<group>"; };
+		B52DF7711CE7443200C8EFAD /* TopAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopAnswer.h; sourceTree = "<group>"; };
+		B52DF7721CE7443200C8EFAD /* TopAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopAnswer.m; sourceTree = "<group>"; };
+		B52DF7731CE7443200C8EFAD /* TopAnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopAnswerCell.h; sourceTree = "<group>"; };
+		B52DF7741CE7443200C8EFAD /* TopAnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopAnswerCell.m; sourceTree = "<group>"; };
+		B52DF7751CE7443200C8EFAD /* TopAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopAnswerCell.xib; sourceTree = "<group>"; };
+		B52DF7761CE7443200C8EFAD /* TrendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendView.h; sourceTree = "<group>"; };
+		B52DF7771CE7443200C8EFAD /* TrendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendView.m; sourceTree = "<group>"; };
 		B53AFAEC1CE40D4A00BA6E7E /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		B53AFAED1CE40D4A00BA6E7E /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
 		B53AFAEE1CE40D4A00BA6E7E /* NewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
@@ -183,6 +221,14 @@
 				B572E56E1CE2B68B00BB279A /* NewsBatch.m */,
 				B53AFAEF1CE40D4A00BA6E7E /* NewsModel.h */,
 				B53AFAF01CE40D4A00BA6E7E /* NewsModel.m */,
+				B52DF75F1CE741B600C8EFAD /* UserModel.h */,
+				B52DF7601CE741B600C8EFAD /* UserModel.m */,
+				B52DF75A1CE741B600C8EFAD /* UserDetail.h */,
+				B52DF75B1CE741B600C8EFAD /* UserDetail.m */,
+				B52DF7611CE741B600C8EFAD /* UserSrch.h */,
+				B52DF7621CE741B600C8EFAD /* UserSrch.m */,
+				B52DF7711CE7443200C8EFAD /* TopAnswer.h */,
+				B52DF7721CE7443200C8EFAD /* TopAnswer.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -196,6 +242,22 @@
 				B53AFAEC1CE40D4A00BA6E7E /* NewsCell.h */,
 				B53AFAED1CE40D4A00BA6E7E /* NewsCell.m */,
 				B53AFAEE1CE40D4A00BA6E7E /* NewsCell.xib */,
+				B52DF7571CE741B600C8EFAD /* UserCell.h */,
+				B52DF7581CE741B600C8EFAD /* UserCell.m */,
+				B52DF7591CE741B600C8EFAD /* UserCell.xib */,
+				B52DF75C1CE741B600C8EFAD /* UserDetailCell.h */,
+				B52DF75D1CE741B600C8EFAD /* UserDetailCell.m */,
+				B52DF75E1CE741B600C8EFAD /* UserDetailCell.xib */,
+				B52DF7631CE741B600C8EFAD /* UserSrchCell.h */,
+				B52DF7641CE741B600C8EFAD /* UserSrchCell.m */,
+				B52DF7651CE741B600C8EFAD /* UserSrchCell.xib */,
+				B52DF76F1CE7443200C8EFAD /* Polor7View.h */,
+				B52DF7701CE7443200C8EFAD /* Polor7View.m */,
+				B52DF7731CE7443200C8EFAD /* TopAnswerCell.h */,
+				B52DF7741CE7443200C8EFAD /* TopAnswerCell.m */,
+				B52DF7751CE7443200C8EFAD /* TopAnswerCell.xib */,
+				B52DF7761CE7443200C8EFAD /* TrendView.h */,
+				B52DF7771CE7443200C8EFAD /* TrendView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -284,8 +346,12 @@
 			files = (
 				B53BEEF81CE15C8000E4E1BA /* LaunchScreen.storyboard in Resources */,
 				B53BEEF51CE15C8000E4E1BA /* Assets.xcassets in Resources */,
+				B52DF76E1CE741B600C8EFAD /* UserSrchCell.xib in Resources */,
 				B53AFAF21CE40D4A00BA6E7E /* NewsCell.xib in Resources */,
+				B52DF76A1CE741B600C8EFAD /* UserDetailCell.xib in Resources */,
+				B52DF77B1CE7443200C8EFAD /* TopAnswerCell.xib in Resources */,
 				B572E5741CE2B68B00BB279A /* NewsBatchCell.xib in Resources */,
+				B52DF7671CE741B600C8EFAD /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,19 +410,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52DF77A1CE7443200C8EFAD /* TopAnswerCell.m in Sources */,
 				B53BEEED1CE15C8000E4E1BA /* AppDelegate.m in Sources */,
 				B53AFAF11CE40D4A00BA6E7E /* NewsCell.m in Sources */,
+				B52DF7691CE741B600C8EFAD /* UserDetailCell.m in Sources */,
+				B52DF76C1CE741B600C8EFAD /* UserSrch.m in Sources */,
+				B52DF7781CE7443200C8EFAD /* Polor7View.m in Sources */,
 				B52DF7471CE6F86F00C8EFAD /* NewsAnswerViewController.m in Sources */,
 				B52DF74F1CE7114C00C8EFAD /* TopUserViewController.m in Sources */,
 				B53BEEEA1CE15C8000E4E1BA /* main.m in Sources */,
 				B52DF7561CE729F900C8EFAD /* AboutItemViewController.m in Sources */,
+				B52DF7791CE7443200C8EFAD /* TopAnswer.m in Sources */,
+				B52DF76D1CE741B600C8EFAD /* UserSrchCell.m in Sources */,
 				B53AFAF31CE40D4A00BA6E7E /* NewsModel.m in Sources */,
+				B52DF76B1CE741B600C8EFAD /* UserModel.m in Sources */,
+				B52DF77C1CE7443200C8EFAD /* TrendView.m in Sources */,
 				B572E5771CE2B6FA00BB279A /* ToolBox.m in Sources */,
 				B572E5731CE2B68B00BB279A /* NewsBatchCell.m in Sources */,
+				B52DF7681CE741B600C8EFAD /* UserDetail.m in Sources */,
 				B53AFAF61CE4160300BA6E7E /* NewsViewController.m in Sources */,
 				B52DF74A1CE7042D00C8EFAD /* SideViewController.m in Sources */,
 				B572E5721CE2B68B00BB279A /* NewsBatch.m in Sources */,
 				B52DF7531CE7117D00C8EFAD /* AboutViewController.m in Sources */,
+				B52DF7661CE741B600C8EFAD /* UserCell.m in Sources */,
 				B5ABF0B01CE1BF3B00F714CD /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

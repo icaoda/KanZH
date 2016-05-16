@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "Header.h"
 
-@interface TopUserViewController ()
+@interface TopUserViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -27,15 +27,55 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-nav"]
                                                                              style:UIBarButtonItemStylePlain target:self
                                                                             action:@selector(toggleDrawerLeft)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-date"]
+                                                                              style:UIBarButtonItemStylePlain target:self
+                                                                             action:@selector(searchBarItemClick)];
     self.navigationController.navigationBar.tintColor = kWhiteColor;
     self.navigationController.navigationBar.barTintColor = kGreenColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0],
                                                                     NSForegroundColorAttributeName:[UIColor blueColor]};
 }
 
+- (void)addTableViewToView {
+    
+}
+
+- (void)addRefreshViewToView {
+    
+}
+
+- (void)downloadData {
+    
+}
 
 - (void)toggleDrawerLeft {
     [[AppDelegate globalDelegate] toggleDrawerWithLeftSide];
+}
+
+- (void)searchBarItemClick {
+    NSLog(@"Search start!");
+}
+
+#pragma mark - Data Source 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+#pragma mark - Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 - (void)didReceiveMemoryWarning {
