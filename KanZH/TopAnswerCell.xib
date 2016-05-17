@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="625K" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V80-1x-K6E">
-                        <rect key="frame" x="23" y="15" width="40" height="15"/>
+                        <rect key="frame" x="21" y="23" width="40" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
                         <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,8 +34,8 @@
                         <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="widget_taday" id="Ule-Zx-tzU">
-                        <rect key="frame" x="21" y="0.0" width="44" height="15"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top_answer" id="Ule-Zx-tzU">
+                        <rect key="frame" x="26" y="0.0" width="30" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
@@ -46,10 +46,10 @@
                 <outlet property="timeStamp" destination="gIN-gu-1Op" id="Ve6-FT-t7s"/>
                 <outlet property="title" destination="tYR-e3-P2R" id="nNv-nX-rF3"/>
             </connections>
-            <point key="canvasLocation" x="540" y="251.5"/>
+            <point key="canvasLocation" x="345" y="248.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="widget_taday" width="12" height="12"/>
+        <image name="top_answer" width="30" height="20"/>
     </resources>
 </document>

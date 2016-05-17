@@ -44,9 +44,9 @@
 // ** 配置导航栏
 - (void)configNaviBar {
     self.navigationItem.title = @"精彩回答";
-    UIBarButtonItem *question = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-nav"] style:UIBarButtonItemStylePlain target:self action:@selector(barItemClick:)];
+    UIBarButtonItem *question = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-topic"] style:UIBarButtonItemStylePlain target:self action:@selector(barItemClick:)];
     question.tag = 555;
-    UIBarButtonItem *author = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-date"] style:UIBarButtonItemStylePlain target:self action:@selector(barItemClick:)];
+    UIBarButtonItem *author = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-author"] style:UIBarButtonItemStylePlain target:self action:@selector(barItemClick:)];
     author.tag = 556;
     self.navigationItem.rightBarButtonItems = @[question,author];
 }

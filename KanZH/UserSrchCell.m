@@ -38,7 +38,7 @@
 
 - (void)showCellWithUserSrch:(UserSrch *)user {
     // ** 1.设置头像
-    self.avatar.image = [UIImage imageNamed:@""];
+    self.avatar.image = [UIImage imageNamed:@"avatar_holder"];
     self.avatar.layer.masksToBounds = YES;
     self.avatar.layer.cornerRadius = 42;
     // ** 2.设置所有label的值
@@ -53,7 +53,7 @@
     self.avatar.frame       = CGRectMake(kScreenSize.width-kCellSpace-84, kCellSpace, 84, 84);
     self.sigImg.frame       = CGRectMake(kCellSpace, kCellSpace, 15, 15);
     self.nameImg.frame      = CGRectMake(kCellSpace, kCellSpace+CGRectGetMaxY(self.sigImg.frame), 15, 15);
-    self.idImg.frame        = CGRectMake(kCellSpace, kCellSpace+CGRectGetMaxX(self.nameImg.frame), 15, 15);
+    self.idImg.frame        = CGRectMake(kCellSpace, kCellSpace+CGRectGetMaxY(self.nameImg.frame), 15, 15);
     self.answerImg.frame    = CGRectMake(kCellSpace, kCellSpace+CGRectGetMaxY(self.idImg.frame), 15, 15);
     // **   3.2第二列图标的frame:
     // **       签名标签
@@ -67,8 +67,8 @@
     self.ansLabel.frame     = CGRectMake(xRow2, kCellSpace+CGRectGetMaxY(self.idLabel.frame), 100, 15);
     // **   3.3第三列图标的frame
     // **       关注数图标
-    self.followImg.frame    = CGRectMake(kCellSpace+CGRectGetMinX(self.idLabel.frame), self.idLabel.frame.origin.y, 15, 15);
-    self.agreeImg.frame     = CGRectMake(kCellSpace+CGRectGetMinY(self.ansLabel.frame), self.ansLabel.frame.origin.y, 15, 15);
+    self.followImg.frame    = CGRectMake(kCellSpace+CGRectGetMaxX(self.idLabel.frame), self.idLabel.frame.origin.y, 15, 15);
+    self.agreeImg.frame     = CGRectMake(kCellSpace+CGRectGetMaxX(self.ansLabel.frame), self.ansLabel.frame.origin.y, 15, 15);
     self.followLabel.frame  = CGRectMake(CGRectGetMaxX(self.followImg.frame), self.followImg.frame.origin.y, 50, 15);
     self.agreeLabel.frame   = CGRectMake(CGRectGetMaxX(self.agreeImg.frame), self.agreeImg.frame.origin.y, 50, 15);
     

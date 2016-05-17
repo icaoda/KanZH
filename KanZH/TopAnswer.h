@@ -12,9 +12,10 @@
 // ** 高票答案
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *link;
-@property (nonatomic, copy) NSString *agree;
 @property (nonatomic, copy) NSString *date;
-@property (nonatomic, copy) NSString *ispost;
+@property (nonatomic, assign) NSNumber *agree;
+@property (nonatomic, assign) BOOL *ispost;
+
 // ** 构造方法
 + (instancetype)topAnswerWithDictionary:(NSDictionary *)dic;
 - (instancetype)initAnswerWithDictionary:(NSDictionary *)dic;

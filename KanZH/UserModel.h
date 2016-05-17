@@ -12,7 +12,7 @@
 @interface UserModel : NSObject
 // ** 用户属性
 @property (nonatomic, copy) NSString *id;
-@property (nonatomic, copy) NSString *count;
+@property (nonatomic, copy) NSNumber *count;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *uHash;
 @property (nonatomic, copy) NSString *avatar;

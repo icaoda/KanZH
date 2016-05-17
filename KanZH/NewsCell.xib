@@ -44,7 +44,7 @@
                         <rect key="frame" x="8" y="151" width="15" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="widget_author1" id="bb9-5K-weQ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="widget_author2" id="bb9-5K-weQ">
                         <rect key="frame" x="76" y="8" width="15" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -84,7 +84,7 @@
     </objects>
     <resources>
         <image name="widget_agree" width="15" height="15"/>
-        <image name="widget_author1" width="15" height="15"/>
+        <image name="widget_author2" width="15" height="15"/>
         <image name="widget_time1" width="15" height="15"/>
         <image name="widget_time2" width="100" height="100"/>
     </resources>

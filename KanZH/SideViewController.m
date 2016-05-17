@@ -58,7 +58,7 @@
     cell.textLabel.text = self.dataSource[indexPath.row];
     cell.textLabel.textColor = [UIColor blueColor];
     cell.backgroundColor = [UIColor clearColor];
-    cell.imageView.image = [UIImage imageNamed:@"menu-date"/*self.dataSource[indexPath.row+self.dataSource.count/2]*/];
+    cell.imageView.image = [UIImage imageNamed:self.dataSource[indexPath.row+self.dataSource.count/2]];
     return cell;
 }
 

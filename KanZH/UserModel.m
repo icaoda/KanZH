@@ -16,12 +16,12 @@
 
 - (instancetype)initModelWithDictionary:(NSDictionary *)dic key:(NSString *)key {
     if (self=[super init]) {
-        self.id         =   [dic valueForKey:@"id"];
-        self.count      =   [dic valueForKey:key];
-        self.name       =   [dic valueForKey:@"name"];
-        self.uHash      =   [dic valueForKey:@"hash"];
-        self.avatar     =   [dic valueForKey:@"avatar"];
-        self.signature  =   [dic valueForKey:@"signature"];
+        self.id         =   [dic objectForKey:@"id"];
+        self.count      =   [dic objectForKey:key];
+        self.name       =   [dic objectForKey:@"name"];
+        self.uHash      =   [dic objectForKey:@"hash"];
+        self.avatar     =   [dic objectForKey:@"avatar"];
+        self.signature  =   [dic objectForKey:@"signature"];
     }
     return self;
 }

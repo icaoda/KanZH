@@ -32,7 +32,7 @@
 
 - (void)showCellWithUserModel:(UserModel *)user {
     // ** 1.设置头像
-    [self.avatar setImage:[UIImage imageNamed:@""]];
+    [self.avatar setImage:[UIImage imageNamed:@"avatar_holder"]];
     [self.avatar setFrame:CGRectMake(kCellSpace, kCellSpace, 84, 84)];
     [self.avatar.layer setMasksToBounds:YES];
     [self.avatar.layer setCornerRadius:42];
@@ -48,9 +48,10 @@
     [self.countLabel    setFrame:CGRectMake(lablX, kCellSpace+CGRectGetMaxY(self.idLabel.frame), 180, 15)];
     [self.sigLabel      setFrame:CGRectMake(lablX, kCellSpace+CGRectGetMaxY(self.countLabel.frame), 180, 15)];
     // ** 3.设置标签值
+    NSString *count = [NSString stringWithFormat:@"%ld",[user.count integerValue]];
+    [self.countLabel    setText:count];
     [self.idLabel       setText:user.id];
     [self.nameLabel     setText:user.name];
-    [self.countLabel    setText:user.count];
     [self.sigLabel      setText:user.signature];
 }
 

@@ -121,13 +121,13 @@
                 // ** 更新最后时间戳
                 NewsBatch *last = [self.dataSource lastObject];
                 self.timeStamp = last.publishtime;
+                [self.table reloadData];
             }
         // ** 如果数据为空，不做处理
         } else {
             NSLog(@"Download data error");
         }
         // ** 终止刷新，更新数据
-        [self.table reloadData];
         [self setIsRefreshing:NO];
         [self.table.mj_header endRefreshing];
         [self.table.mj_footer endRefreshing];

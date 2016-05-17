@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @class UserDetail;
-@interface UserDetailCell : UITableViewCell
+@interface UserDetailCell : UIView
 // ** 通过数据模型设置cell的内容
 - (void)showCellWithUserDetail:(UserDetail *)user;
 @end

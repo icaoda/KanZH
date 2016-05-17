@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // ** 初始化
-    self.dateSource = @[@"关于看知乎",@"看知乎API",@"用户互动",@"",@"",@""];
+    self.dateSource = @[@"关于看知乎",@"看知乎API",@"用户互动",@"about_about",@"about_api",@"about_interact"];
     [self customizeNavigationBar];
     [self addTableView];
 }

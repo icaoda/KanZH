@@ -38,12 +38,15 @@
 // ----------------------------------------------------------- //
 // **** 第三部分 <排行榜接口>
 //          用户搜索      @para:参数--关键字
-#define kUrlUserSrch @"http://api.kanzhihu.com/searchuser/%@"
+//#define kUrlUserSrch @"http://api.kanzhihu.com/searchuser/%@"
+#define kUrlUserSrch @"file:///Users/sw05/Desktop/KanZhi/searchusr_%@"
 //          排行榜        @para：参数item--排行指标
 //                       @para: 参数page--page/items
-#define kUrlTopuser @"http://api.kanzhihu.com/topuser/%@/%@/%@"
+//#define kUrlTopuser @"http://api.kanzhihu.com/topuser/%@/ld"
+#define kUrlTopuser @"file:///Users/sw05/Desktop/KanZhi/topuser_%@_%ld"
 //          用户详情      @para: 参数hash--用户hash
-#define kUrlUserdetail2 @"http://api.kanzhihu.com/userdetail2/%@"
+//#define kUrlUserdetail2 @"http://api.kanzhihu.com/userdetail2/%@"
+#define kUrlUserdetail2 @"file:///Users/sw05/Desktop/KanZhi/userdetail2_%@"
 // ----------------------------------------------------------- //
 
 // ** 全局的通知
