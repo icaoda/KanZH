@@ -57,7 +57,7 @@
 - (void)initPickerDataSource {
     // ** 从plist读入模型数组
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Parameters.plist" ofType:nil];
-    self.rootData  = [NSArray arrayWithContentsOfFile:path];NSLog(@"root:\n%@",self.rootData);
+    self.rootData  = [NSArray arrayWithContentsOfFile:path];
     // ** 给第一个选取部件准备数据
     NSMutableArray *data1 = [NSMutableArray array];
     for (NSDictionary *item in self.rootData) {
@@ -77,7 +77,7 @@
                                                                               style:UIBarButtonItemStylePlain target:self
                                                                              action:@selector(searchBarItemClick)];
     self.navigationController.navigationBar.tintColor = kWhiteColor;
-    self.navigationController.navigationBar.barTintColor = kGreenColor;
+    self.navigationController.navigationBar.barTintColor = kLightBlueColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0],
                                                                     NSForegroundColorAttributeName:[UIColor blueColor]};
 }
@@ -246,14 +246,13 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {NSLog(@"row = %ld",self.dataSource.count);
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UserCell *cell = [self.table dequeueReusableCellWithIdentifier:@"UserCell"];
-    [cell showCellWithUserModel:self.dataSource[indexPath.row]];NSLog(@"******%ld",indexPath.row);
-    NSLog(@"&&&&&-%@",self.dataSource[indexPath.row]);
+    [cell showCellWithUserModel:self.dataSource[indexPath.row]];
     return cell;
 }
 

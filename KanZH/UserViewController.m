@@ -73,7 +73,6 @@
             NSString *erro = [responseObject objectForKey:@"error"];
             if ([erro isEqualToString:@""] == YES) {
                 self.usrDetail = [UserDetail userDetailWithDictionary:responseObject];
-                NSLog(@"%@",self.usrDetail);
                 [self prepareDataModelForView];
                 [self layoutIfDataAvaliable];
             } else {
@@ -128,7 +127,6 @@
 }
 
 - (void)addHeaderView {
-    NSArray *arr = [[NSBundle mainBundle] loadNibNamed:@"UserDetailCell" owner:nil options:nil];NSLog(@"%@",arr);
     UserDetailCell *header = [[NSBundle mainBundle] loadNibNamed:@"UserDetailCell" owner:nil options:nil][0];
     header.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.frame), 120);
     [header showCellWithUserDetail:self.usrDetail];
@@ -144,9 +142,8 @@
 }
 
 - (void)segmentClick:(UISegmentedControl *)sender {
-    NSLog(@"seg  -- %ld",(long)sender.selectedSegmentIndex);NSLog(@"offset:%@",NSStringFromCGPoint(self.scrollView.contentOffset));
     CGFloat xOffset = (sender.selectedSegmentIndex) * CGRectGetWidth(self.scrollView.frame);
-    [self.scrollView setContentOffset:CGPointMake(xOffset, 0)];NSLog(@"offset:%@",NSStringFromCGPoint(self.scrollView.contentOffset));
+    [self.scrollView setContentOffset:CGPointMake(xOffset, 0)];
 }
 
 - (void)addContentScrollView {

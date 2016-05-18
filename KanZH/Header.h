@@ -14,7 +14,7 @@
 #define kCellSpace 8.0
 
 // **** 界面背景色
-#define kGreenColor [UIColor colorWithRed:100.0/255.0 green:126.0/255.0 blue:255.0/255.0 alpha:0.5];
+#define kLightBlueColor [UIColor colorWithRed:100.0/255.0 green:126.0/255.0 blue:255.0/255.0 alpha:0.5];
 #define kWhiteColor [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5];
 
 // -------------------www.kanzhihu.com API-------------------- //

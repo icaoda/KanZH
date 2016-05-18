@@ -148,7 +148,7 @@
             [self.dataSource removeAllObjects];
         }
         // ** 连接成功，如果数据不为空
-        NSLog(@"data task success");NSLog(@"*************\n%@",responseObject);
+        NSLog(@"data task success");
         if (responseObject) {
             NSString *erro = [responseObject valueForKey:@"error"];
             if ([erro isEqualToString:@""]) {
@@ -247,7 +247,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"**** %ld",self.dataSource.count);
     return self.dataSource.count;
 }
 

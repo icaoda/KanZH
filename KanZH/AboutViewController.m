@@ -34,7 +34,7 @@
                                                                              style:UIBarButtonItemStylePlain target:self
                                                                             action:@selector(toggleDrawerLeft)];
     self.navigationController.navigationBar.tintColor = kWhiteColor;
-    self.navigationController.navigationBar.barTintColor = kGreenColor;
+    self.navigationController.navigationBar.barTintColor = kLightBlueColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0],
                                                                     NSForegroundColorAttributeName:[UIColor blueColor]};
 }

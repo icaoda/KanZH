@@ -43,10 +43,6 @@
 		B572E5741CE2B68B00BB279A /* NewsBatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B572E5711CE2B68B00BB279A /* NewsBatchCell.xib */; };
 		B572E5771CE2B6FA00BB279A /* ToolBox.m in Sources */ = {isa = PBXBuildFile; fileRef = B572E5761CE2B6FA00BB279A /* ToolBox.m */; };
 		B5ABF0B01CE1BF3B00F714CD /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5ABF0AF1CE1BF3B00F714CD /* MainViewController.m */; };
-		B5BC374C1CEB42D60003C8DC /* TopAnswerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC374B1CEB42D60003C8DC /* TopAnswerTableViewController.m */; };
-		B5BC374F1CEB43240003C8DC /* TrendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC374E1CEB43240003C8DC /* TrendViewController.m */; };
-		B5BC37521CEB43350003C8DC /* Polor7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC37511CEB43350003C8DC /* Polor7ViewController.m */; };
-		B5BC37551CEB434E0003C8DC /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC37541CEB434E0003C8DC /* DetailTableViewController.m */; };
 		B5E784861CEC1190009276B1 /* UsrDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E784851CEC1190009276B1 /* UsrDetailCell.m */; };
 /* End PBXBuildFile section */
 
@@ -117,14 +113,6 @@
 		B5ABF0AD1CE1AE0800F714CD /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		B5ABF0AE1CE1BF3B00F714CD /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		B5ABF0AF1CE1BF3B00F714CD /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		B5BC374A1CEB42D60003C8DC /* TopAnswerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopAnswerTableViewController.h; sourceTree = "<group>"; };
-		B5BC374B1CEB42D60003C8DC /* TopAnswerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopAnswerTableViewController.m; sourceTree = "<group>"; };
-		B5BC374D1CEB43240003C8DC /* TrendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendViewController.h; sourceTree = "<group>"; };
-		B5BC374E1CEB43240003C8DC /* TrendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendViewController.m; sourceTree = "<group>"; };
-		B5BC37501CEB43350003C8DC /* Polor7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polor7ViewController.h; sourceTree = "<group>"; };
-		B5BC37511CEB43350003C8DC /* Polor7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Polor7ViewController.m; sourceTree = "<group>"; };
-		B5BC37531CEB434E0003C8DC /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
-		B5BC37541CEB434E0003C8DC /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
 		B5E784841CEC1190009276B1 /* UsrDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrDetailCell.h; sourceTree = "<group>"; };
 		B5E784851CEC1190009276B1 /* UsrDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrDetailCell.m; sourceTree = "<group>"; };
 		BDBA7C0F41CD2F8F28CED61D /* Pods-KanZH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanZH.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanZH/Pods-KanZH.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,7 +169,6 @@
 				B56FBA5E1CE9C2C10024CB92 /* SearchViewController.m */,
 				B56FBA5A1CE9C2B00024CB92 /* UserViewController.h */,
 				B56FBA5B1CE9C2B00024CB92 /* UserViewController.m */,
-				B5BC37491CEB42850003C8DC /* detail */,
 			);
 			name = usr;
 			sourceTree = "<group>";
@@ -314,21 +301,6 @@
 			name = tools;
 			sourceTree = "<group>";
 		};
-		B5BC37491CEB42850003C8DC /* detail */ = {
-			isa = PBXGroup;
-			children = (
-				B5BC374A1CEB42D60003C8DC /* TopAnswerTableViewController.h */,
-				B5BC374B1CEB42D60003C8DC /* TopAnswerTableViewController.m */,
-				B5BC374D1CEB43240003C8DC /* TrendViewController.h */,
-				B5BC374E1CEB43240003C8DC /* TrendViewController.m */,
-				B5BC37501CEB43350003C8DC /* Polor7ViewController.h */,
-				B5BC37511CEB43350003C8DC /* Polor7ViewController.m */,
-				B5BC37531CEB434E0003C8DC /* DetailTableViewController.h */,
-				B5BC37541CEB434E0003C8DC /* DetailTableViewController.m */,
-			);
-			name = detail;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -457,8 +429,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5BC37551CEB434E0003C8DC /* DetailTableViewController.m in Sources */,
-				B5BC374F1CEB43240003C8DC /* TrendViewController.m in Sources */,
 				B52DF77A1CE7443200C8EFAD /* TopAnswerCell.m in Sources */,
 				B53BEEED1CE15C8000E4E1BA /* AppDelegate.m in Sources */,
 				B53AFAF11CE40D4A00BA6E7E /* NewsCell.m in Sources */,
@@ -468,7 +438,6 @@
 				B52DF7471CE6F86F00C8EFAD /* NewsAnswerViewController.m in Sources */,
 				B52DF74F1CE7114C00C8EFAD /* TopUserViewController.m in Sources */,
 				B53BEEEA1CE15C8000E4E1BA /* main.m in Sources */,
-				B5BC374C1CEB42D60003C8DC /* TopAnswerTableViewController.m in Sources */,
 				B52DF7561CE729F900C8EFAD /* AboutItemViewController.m in Sources */,
 				B52DF7791CE7443200C8EFAD /* TopAnswer.m in Sources */,
 				B52DF76D1CE741B600C8EFAD /* UserSrchCell.m in Sources */,
@@ -487,7 +456,6 @@
 				B52DF7531CE7117D00C8EFAD /* AboutViewController.m in Sources */,
 				B52DF7661CE741B600C8EFAD /* UserCell.m in Sources */,
 				B5ABF0B01CE1BF3B00F714CD /* MainViewController.m in Sources */,
-				B5BC37521CEB43350003C8DC /* Polor7ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

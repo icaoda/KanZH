@@ -43,7 +43,7 @@
 - (void)configNavigationBar {
     self.navigationItem.title = @"用户搜索";
     self.navigationController.navigationBar.tintColor = kWhiteColor;
-    self.navigationController.navigationBar.barTintColor = kGreenColor;
+    self.navigationController.navigationBar.barTintColor = kLightBlueColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18.0],
                                                                     NSForegroundColorAttributeName:[UIColor blueColor]};
 }
