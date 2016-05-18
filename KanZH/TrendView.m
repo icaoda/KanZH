@@ -41,6 +41,16 @@
     }
     return self;
 }
+
+- (void)drawTitleWithString:(NSString *)str {
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 190, 20)];
+    title.textColor = [UIColor blueColor];
+    title.font = [UIFont systemFontOfSize:15.0];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.text = str;
+    [self addSubview:title];
+}
+
 // ** 绘制折线图
 - (void)drawRect:(CGRect)rect {
     // ** 1.绘制背景

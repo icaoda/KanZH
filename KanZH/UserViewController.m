@@ -20,6 +20,7 @@
 #import "Polor7View.h"
 #import "TopAnswerCell.h"
 #import "TrendView.h"
+#import "UsrDetailCell.h"
 #import "Header.h"
 
 @interface UserViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -29,9 +30,12 @@
 @property (nonatomic, strong) UserDetail *usrDetail;
 // ** 显示数据的ScrollView
 @property (nonatomic, strong) UIScrollView *scrollView;
-// ** 表格的数据模型
-@property (nonatomic, strong) NSMutableArray *topAnswers;
-@property (nonatomic, strong) NSMutableArray *usrData;
+// ** 表格的数据模型4-segment
+@property (nonatomic, strong) NSMutableArray *topAnswers;// top10
+@property (nonatomic, strong) NSMutableArray *trendData;// trend
+@property (nonatomic, strong) NSDictionary *polorData;// polor7
+@property (nonatomic, strong) NSDictionary *usrData;// detail
+@property (nonatomic, strong) NSArray *usrDataModel;// dataModel
 @end
 
 @implementation UserViewController
@@ -93,7 +97,27 @@
         TopAnswer *ans = [TopAnswer topAnswerWithDictionary:dic];
         [self.topAnswers addObject:ans];
     }
-    // **
+    // ** 处理trend图的数据模型
+    self.trendData = [NSMutableArray array];
+    NSArray *trend = self.usrDetail.trend;
+    NSMutableArray *trendAns = [NSMutableArray array];
+    NSMutableArray *trendAgr = [NSMutableArray array];
+    NSMutableArray *trendFlo = [NSMutableArray array];
+    NSMutableArray *trendDat = [NSMutableArray array];
+    for (NSDictionary *dic in trend) {
+        [trendAns addObject:dic[@"answer"]];
+        [trendAgr addObject:dic[@"agree"]];
+        [trendFlo addObject:dic[@"follower"]];
+        [trendDat addObject:dic[@"date"]];
+    }
+    [self.trendData addObject:trendAns];
+    [self.trendData addObject:trendAgr];
+    [self.trendData addObject:trendFlo];
+    [self.trendData addObject:trendDat];
+    // ** 处理七星图的数据模型
+    self.polorData = self.usrDetail.star;
+    // ** 处理详情数据的数据模型
+    self.usrData = self.usrDetail.detail;
 }
 
 // ** 布局界面
@@ -120,7 +144,7 @@
 }
 
 - (void)segmentClick:(UISegmentedControl *)sender {
-    NSLog(@"seg  -- %ld",sender.selectedSegmentIndex);NSLog(@"offset:%@",NSStringFromCGPoint(self.scrollView.contentOffset));
+    NSLog(@"seg  -- %ld",(long)sender.selectedSegmentIndex);NSLog(@"offset:%@",NSStringFromCGPoint(self.scrollView.contentOffset));
     CGFloat xOffset = (sender.selectedSegmentIndex) * CGRectGetWidth(self.scrollView.frame);
     [self.scrollView setContentOffset:CGPointMake(xOffset, 0)];NSLog(@"offset:%@",NSStringFromCGPoint(self.scrollView.contentOffset));
 }
@@ -131,6 +155,7 @@
                                                                      CGRectGetHeight(self.view.frame)-204)];
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.contentSize = CGSizeMake(4*CGRectGetWidth(self.view.frame), CGRectGetHeight(self.scrollView.frame));
+    [self.scrollView setScrollEnabled:NO];
     [self.view addSubview:self.scrollView];
     // ** 添加高票答案表格
     [self addTableTop10];
@@ -152,37 +177,64 @@
     tableTop10.delegate = self;
     tableTop10.dataSource = self;
     tableTop10.rowHeight = 45.0;
-    tableTop10.backgroundColor = [UIColor grayColor];
+    tableTop10.backgroundColor = [UIColor whiteColor];
     tableTop10.tag = 100;
     [self.scrollView addSubview:tableTop10];
 }
 
 - (void)addMonthTrendView {
     // ** 添加一月趋势图
-    UIView *trendView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.scrollView.bounds), 0,
+    UIScrollView *trendView = [[UIScrollView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.scrollView.bounds), 0,
                                                                  CGRectGetWidth(self.scrollView.bounds),
                                                                  CGRectGetHeight(self.scrollView.bounds))];
-    trendView.backgroundColor = [UIColor greenColor];
+    trendView.backgroundColor = [UIColor whiteColor];
+    trendView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.bounds), 1000);
     trendView.tag = 101;
+    
+    NSArray *titles = @[@"回答数+专栏文章数",@"赞同数",@"被关注数"];
+    // ** 添加3张趋势图
+    for (NSInteger i=0; i<[titles count]; i++) {
+        TrendView *trendAns = [[TrendView alloc] initWithFrame:CGRectMake((CGRectGetWidth(trendView.frame)-290)/2, 30+(290+30)*i, 290, 290)];
+        trendAns.dateArray = [self.trendData lastObject];
+        trendAns.scaleArray = self.trendData[i];
+        [trendAns drawTitleWithString:titles[i]];
+        [trendView addSubview:trendAns];
+    }
+    
     [self.scrollView addSubview:trendView];
 }
 
 - (void)addPolor7View {
-    // ** 添加七星图
+    // ** 添加七星图底幕布
     UIView *popor7 = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.scrollView.bounds)*2, 0,
                                                               CGRectGetWidth(self.scrollView.bounds),
                                                               CGRectGetHeight(self.scrollView.bounds))];
-    popor7.backgroundColor = [UIColor redColor];
+    popor7.backgroundColor = [UIColor whiteColor];
     popor7.tag = 102;
+    // ** 添加七星图
+    Polor7View *view = [[Polor7View alloc] initWithFrame:CGRectMake((CGRectGetWidth(popor7.frame)-280)/2, 0, 280, 280)];
+    view.rankData = self.polorData;
+    [popor7 addSubview:view];
+    
     [self.scrollView addSubview:popor7];
-
 }
 
 - (void)addDetailUserDataView {
+    // ** 获取详情数据模型
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Parameters.plist" ofType:nil];
+    self.usrDataModel = [NSArray arrayWithContentsOfFile:path];
+    
     // ** 添加详情表格
     UITableView *detailView = [[UITableView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.scrollView.bounds)*3, 0,
                                                                             CGRectGetWidth(self.scrollView.bounds),
-                                                                            CGRectGetHeight(self.scrollView.bounds))];
+                                                                            CGRectGetHeight(self.scrollView.bounds))
+                                                           style:UITableViewStyleGrouped];
+    [detailView registerClass:[UsrDetailCell class] forCellReuseIdentifier:@"UsrDetailCell"];
+    detailView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    detailView.separatorColor = [UIColor blackColor];
+    detailView.delegate = self;
+    detailView.dataSource = self;
+    detailView.rowHeight = 30.0;
     detailView.backgroundColor = [UIColor yellowColor];
     detailView.tag = 103;
     [self.scrollView addSubview:detailView];
@@ -193,7 +245,7 @@
     if (tableView.tag == 100) {
         return 1;
     } else {
-        return 1;
+        return self.usrDataModel.count;
     }
 }
 
@@ -201,7 +253,9 @@
     if (tableView.tag == 100) {
         return self.topAnswers.count;
     } else {
-        return 1;
+        NSDictionary *category = self.usrDataModel[section];
+        NSArray *items = [category objectForKey:@"items"];
+        return items.count;
     }
 }
 
@@ -211,7 +265,33 @@
         [topAns showCellWithAnswer:self.topAnswers[indexPath.row]];
         return topAns;
     } else {
+        // ** 获取数据模型
+        NSDictionary *itemDict = [self.usrDataModel[indexPath.section] objectForKey:@"items"][indexPath.row];
+        NSString *name = [itemDict objectForKey:@"name"];
+        NSString *item = [itemDict objectForKey:@"item"];
+        NSString *scale = [self.usrData objectForKey:item];
+        // ** 构造cell模型
+        CGRect rect = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 30);
+        UsrDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UsrDetailCell"];
+        [cell showCellWithRect:rect name:name scale:scale];
+        return cell;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (tableView.tag != 100) {
+        NSDictionary *category = self.usrDataModel[section];
+        return [category objectForKey:@"category"];
+    } else {
         return nil;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (tableView.tag == 100) {
+        return 0;
+    } else {
+        return 20.0;
     }
 }
 

@@ -47,6 +47,7 @@
 		B5BC374F1CEB43240003C8DC /* TrendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC374E1CEB43240003C8DC /* TrendViewController.m */; };
 		B5BC37521CEB43350003C8DC /* Polor7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC37511CEB43350003C8DC /* Polor7ViewController.m */; };
 		B5BC37551CEB434E0003C8DC /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC37541CEB434E0003C8DC /* DetailTableViewController.m */; };
+		B5E784861CEC1190009276B1 /* UsrDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E784851CEC1190009276B1 /* UsrDetailCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,8 @@
 		B5BC37511CEB43350003C8DC /* Polor7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Polor7ViewController.m; sourceTree = "<group>"; };
 		B5BC37531CEB434E0003C8DC /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
 		B5BC37541CEB434E0003C8DC /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
+		B5E784841CEC1190009276B1 /* UsrDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrDetailCell.h; sourceTree = "<group>"; };
+		B5E784851CEC1190009276B1 /* UsrDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrDetailCell.m; sourceTree = "<group>"; };
 		BDBA7C0F41CD2F8F28CED61D /* Pods-KanZH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanZH.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanZH/Pods-KanZH.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -283,6 +286,8 @@
 				B52DF7751CE7443200C8EFAD /* TopAnswerCell.xib */,
 				B52DF7761CE7443200C8EFAD /* TrendView.h */,
 				B52DF7771CE7443200C8EFAD /* TrendView.m */,
+				B5E784841CEC1190009276B1 /* UsrDetailCell.h */,
+				B5E784851CEC1190009276B1 /* UsrDetailCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				B572E5731CE2B68B00BB279A /* NewsBatchCell.m in Sources */,
 				B52DF7681CE741B600C8EFAD /* UserDetail.m in Sources */,
 				B53AFAF61CE4160300BA6E7E /* NewsViewController.m in Sources */,
+				B5E784861CEC1190009276B1 /* UsrDetailCell.m in Sources */,
 				B52DF74A1CE7042D00C8EFAD /* SideViewController.m in Sources */,
 				B572E5721CE2B68B00BB279A /* NewsBatch.m in Sources */,
 				B52DF7531CE7117D00C8EFAD /* AboutViewController.m in Sources */,

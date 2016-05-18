@@ -12,4 +12,5 @@
 // ** 成员：横纵坐标对应的数组
 @property (nonatomic, copy) NSArray *dateArray;
 @property (nonatomic, copy) NSArray *scaleArray;
+- (void)drawTitleWithString:(NSString *)str;
 @end
