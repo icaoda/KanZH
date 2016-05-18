@@ -101,7 +101,8 @@
                         @"MJRefresh",
                         @"JVFloatingDrawer",
                         @"",
-                        @"反馈：icaoda@qq.com"];
+                        @"反馈：icaoda@qq.com",
+                        @"Copyright © 2016 曹达. All rights researved."];
 }
 
 #pragma mark - Delegate & DataSource

@@ -232,7 +232,7 @@
     detailView.delegate = self;
     detailView.dataSource = self;
     detailView.rowHeight = 30.0;
-    detailView.backgroundColor = [UIColor yellowColor];
+    detailView.backgroundColor = kLightBlueColor;
     detailView.tag = 103;
     [self.scrollView addSubview:detailView];
 }
