@@ -13,6 +13,8 @@
     4.实现代理
  */
 #import "UserViewController.h"
+#import "NewsAnswerViewController.h"
+#import "MBProgressHUD.h"
 #import "AFNetworking.h"
 #import "UserDetail.h"
 #import "TopAnswer.h"
@@ -24,6 +26,9 @@
 #import "Header.h"
 
 @interface UserViewController () <UITableViewDelegate, UITableViewDataSource>
+// ** Hub相关属性
+@property (nonatomic, assign) BOOL isLoading;// 是否加载完成
+@property (nonatomic, assign) CGFloat percent;// 下载进度
 // ** 代表用户唯一的hash值，由其他类传入
 @property (nonatomic, copy) NSString *usrhash;
 // ** 保存用户的数据模型
@@ -56,8 +61,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Download Data from server
+    [self startLoadingWithActivityView];
+}
+
+#pragma mark - 首次加载数据的MBProgressHUD
+- (void)startLoadingWithActivityView {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    hud.labelText = @"Loading...";
+    hud.tag = 111;
+    [self.view addSubview:hud];
+    
+    self.isLoading = YES;
+    self.percent = 0.0;
+    [self addObserver:self forKeyPath:@"isLoading" options:NSKeyValueObservingOptionNew context:nil];
+    [self addObserver:self forKeyPath:@"percent" options:NSKeyValueObservingOptionNew context:nil];
     [self downloadData];
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"isLoading"]) {
+        if ([[change objectForKey:NSKeyValueChangeNewKey] boolValue] == NO) {
+            MBProgressHUD *hud = [self.view viewWithTag:111];
+            [hud removeFromSuperview];
+            [self removeObserver:self forKeyPath:@"isLoading"];
+            [self removeObserver:self forKeyPath:@"percent"];
+        }
+    } else {
+        CGFloat percent = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
+        MBProgressHUD *hub = [self.view viewWithTag:111];
+        hub.progress = percent;
+    }
+}
+
 // ** Download User Data
 - (void)downloadData {
     NSString *url = [NSString stringWithFormat:kUrlUserdetail2,self.usrhash];
@@ -65,7 +102,7 @@
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:config];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSURLSessionDataTask *task = [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
+        self.percent = downloadProgress.fractionCompleted;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // ** 下载成功，开始解析
         if (responseObject) {
@@ -82,8 +119,9 @@
             // ** 数据空，异常
         }
         // ** 修改全局变量，刷新界面
+        [self setIsLoading:NO];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        [self setIsLoading:NO];
     }];
     [task resume];
 }
@@ -289,6 +327,17 @@
         return 0;
     } else {
         return 20.0;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView.tag == 100) {
+        TopAnswer *ans = self.topAnswers[indexPath.row];
+        NSArray *linkComp = [ans.link componentsSeparatedByString:@"/"];
+        NewsAnswerViewController *ansVC = [NewsAnswerViewController newsAnserWithQuestion:linkComp[2]
+                                                                                   answer:linkComp[4] userHash:nil];
+        ansVC.isPost = ans.ispost;
+        [self.navigationController pushViewController:ansVC animated:NO];
     }
 }
 

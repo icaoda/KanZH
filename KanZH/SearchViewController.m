@@ -98,22 +98,19 @@
 
 #pragma mark - SearchBar: Delegate
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    NSLog(@"%d,%s",__LINE__,__func__);
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"%d,%s",__LINE__,__func__);
     // ** 赋值全局变量，标记当前模式为搜索编辑
     [self setIsSearchEditing:YES];
     // ** 如果不为空，加载数据，显示名字
     if ([searchBar.text isEqualToString:@""] == NO) {
-        [self downloadData:searchBar.text];
+        NSString *para = [searchBar.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        [self downloadData:para];
     }
-    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"%d,%s",__LINE__,__func__);
     [searchBar resignFirstResponder];
     [self setIsSearchEditing:NO];
     [self.table reloadData];

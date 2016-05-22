@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsAnswerViewController : UIViewController
+@property (nonatomic, assign) BOOL isPost;
 // ** 构造方法，初始化成员
 + (instancetype)newsAnserWithQuestion:(NSString *)quest answer:(NSString *)ans userHash:(NSString *)usr;
 - (instancetype)initAnserWithQeestion:(NSString *)quest answer:(NSString *)ans userHash:(NSString *)usr;

@@ -33,7 +33,7 @@
     if (agree >= 1000) {
         self.agreeCount.text = [NSString stringWithFormat:@"%luK",agree/1000];
     } else {
-        self.agreeCount.text = [NSString stringWithFormat:@"%lu",[answer.agree integerValue]];
+        self.agreeCount.text = [NSString stringWithFormat:@"%lu",(long)[answer.agree integerValue]];
     }
     self.timeStamp.text = [ToolBox toolGetDateSubString:answer.date];
     self.title.text = answer.title;

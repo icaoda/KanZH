@@ -111,7 +111,7 @@
         CGRect rect = CGRectMake(3, 252-24*i, 42, 16);
         UILabel *tag = [[UILabel alloc] initWithFrame:rect];
         CGFloat yScale = _minScale + (_maxScale - _minScale) * i / 10.0;
-        tag.text = [NSString stringWithFormat:@"%ld",(NSUInteger)yScale];
+        tag.text = [NSString stringWithFormat:@"%ld",(unsigned long)yScale];
         tag.textAlignment = NSTextAlignmentRight;
         tag.font = [UIFont systemFontOfSize:8.0];
         tag.textColor = [UIColor blackColor];

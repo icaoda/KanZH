@@ -15,6 +15,7 @@
 
 #import "NewsViewController.h"
 #import "NewsAnswerViewController.h"
+#import "MBProgressHUD.h"
 #import "AFNetworking.h"
 #import "MJRefresh.h"
 #import "NewsModel.h"
@@ -32,6 +33,8 @@
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UILabel *headTime;
+// ** Hub相关属性
+@property (nonatomic, assign) BOOL isLoading;// 是否加载完成
 // ** 属性：刷新相关参数
 @property (nonatomic, assign) BOOL isRefreshing;
 @property (nonatomic, assign) BOOL isLast;
@@ -61,7 +64,30 @@
     [self setCurrentDate:_date];
     [self setCurrentName:_name];
     [self setDataSource:[NSMutableArray array]];
+    [self startLoadingWithActivityView];
+}
+
+#pragma mark - 首次加载数据的MBProgressHUD
+- (void)startLoadingWithActivityView {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Loading...";
+    hud.tag = 121;
+    [self.view addSubview:hud];
+    
+    self.isLoading = YES;
+    [self addObserver:self forKeyPath:@"isLoading" options:NSKeyValueObservingOptionNew context:nil];
     [self downloadDataWithDate:self.date name:self.name];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"isLoading"]) {
+        if ([[change objectForKey:NSKeyValueChangeNewKey] boolValue] == NO) {
+            MBProgressHUD *hud = [self.view viewWithTag:121];
+            [hud removeFromSuperview];
+            [self removeObserver:self forKeyPath:@"isLoading"];
+        }
+    }
 }
 
 #pragma mark - Config View
@@ -141,17 +167,17 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     // ** 配置DataTask
     NSURLSessionDataTask *task = [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        NSLog(@"Download inprogress!");
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        // ** 如果切换了name，或者所取时间不晚于当前时间 则清空数据重新加载
-        if ([name isEqualToString:_currentName] == NO || [ToolBox toolDate:date isNotLaterThanDate:_currentDate]) {
-            [self.dataSource removeAllObjects];
-        }
         // ** 连接成功，如果数据不为空
-        NSLog(@"data task success");
         if (responseObject) {
             NSString *erro = [responseObject valueForKey:@"error"];
             if ([erro isEqualToString:@""]) {
+                // ** 如果切换了name，或者所取时间不晚于当前时间 则清空数据重新加载
+                if ([name isEqualToString:_currentName] == NO || [ToolBox toolDate:date isNotLaterThanDate:_currentDate]) {
+                    [self.dataSource removeAllObjects];
+                }
+                // ** 重新组合数据模型
                 NSArray *answers = [responseObject objectForKey:@"answers"];
                 for (NSDictionary *dic in answers) {
                     NewsModel *news = [NewsModel newsModelWithDictionary:dic];
@@ -161,13 +187,14 @@
                 self.currentDate = date;
                 self.currentName = name;
                 self.headTime.text = [ToolBox toolDayWithString:self.currentDate];
+                [self.table reloadData];
             }
         // ** 如果数据为空，不做处理
         } else {
             NSLog(@"Download data error");
         }
         // ** 终止刷新，更新数据
-        [self.table reloadData];
+        [self setIsLoading:NO];
         [self setIsRefreshing:NO];
         [self.table.mj_header endRefreshing];
         [self.table.mj_footer endRefreshing];
@@ -177,6 +204,7 @@
         NSString *message = [NSString stringWithFormat:@"获取数据失败"];
         [self showAlertForMessage:message];
         // ** 连接失败，处理刷新
+        [self setIsLoading:NO];
         [self setIsRefreshing:NO];
         [self.table.mj_header endRefreshing];
         [self.table.mj_footer endRefreshing];
@@ -191,14 +219,13 @@
     [UIView animateWithDuration:8.0 animations:^{
         alert.view.alpha = 0;
     } completion:^(BOOL finished) {
-        [weakSelf dismissViewControllerAnimated:alert completion:nil];
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 
 #pragma mark - Response to User Interaction
 // ** 右导航按钮的响应函数，退出设置
 - (void)popupPickerView {
-    NSLog(@"Pop up view");
     // ** 弹出view的幕布
     UIView *popView = [[UIView alloc] initWithFrame:CGRectMake(0, 64+20, CGRectGetWidth(self.view.frame), 150)];
     popView.backgroundColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:255.0/255.0 alpha:1.0];
@@ -229,7 +256,6 @@
 }
 
 - (void)datePickerDone {
-    NSLog(@"date picker done");
     // ** 取出选取值，移除弹出视图
     UIView *view = [self.view viewWithTag:888];
     UIDatePicker *picker = [view viewWithTag:889];

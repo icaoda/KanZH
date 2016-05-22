@@ -10,6 +10,7 @@
 #import "NewsModel.h"
 #import "Header.h"
 #import "ToolBox.h"
+#import "UIButton+WebCache.h"
 
 @interface NewsCell ()
 @property (weak, nonatomic) IBOutlet UIButton *avatar;
@@ -32,7 +33,8 @@
 
 - (void)showCellWithNews:(NewsModel *)news {
     // ** 1.设置头像: Notes that this not the absolute show,will show network image with SDImage
-    [self.avatar setBackgroundImage:[UIImage imageNamed:@"place_holder_avatar"] forState:UIControlStateNormal];
+    NSURL *url = [NSURL URLWithString:news.avatar];
+    [self.avatar sd_setImageWithURL:url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"place_holder_avatar"]];
     [self.avatar setFrame:CGRectMake(kCellSpace, kCellSpace, 60, 60)];
     [self.avatar.layer setMasksToBounds:YES];
     [self.avatar.layer setCornerRadius:30];

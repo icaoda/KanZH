@@ -10,6 +10,7 @@
 #import "SearchViewController.h"
 #import "UserViewController.h"
 #import "AFNetworking.h"
+#import "MBProgressHUD.h"
 #import "MJRefresh.h"
 #import "AppDelegate.h"
 #import "UserModel.h"
@@ -32,6 +33,8 @@
 @property (nonatomic, strong) NSArray *rootData;
 @property (nonatomic, strong) NSArray *pickerData1;
 @property (nonatomic, strong) NSArray *pickerData2;
+// ** Hub相关属性
+@property (nonatomic, assign) BOOL isLoading;// 是否加载完成
 @end
 
 @implementation TopUserViewController
@@ -50,8 +53,33 @@
     [self setValue:[self.pickerData2[0] objectForKey:@"item"]];
     [self setIsRefreshing:NO];
     [self setIsLast:NO];
+    [self startLoadingWithActivityView];
+}
+
+#pragma mark - 首次加载数据的MBProgressHUD
+- (void)startLoadingWithActivityView {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Loading...";
+    hud.tag = 111;
+    [self.view addSubview:hud];
+    
+    self.isLoading = YES;
+    [self addObserver:self forKeyPath:@"isLoading" options:NSKeyValueObservingOptionNew context:nil];
     [self downloadDataWithValue:_value pageIndex:_pageIndex];
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"isLoading"]) {
+        if ([[change objectForKey:NSKeyValueChangeNewKey] boolValue] == NO) {
+            MBProgressHUD *hud = [self.view viewWithTag:111];
+            [hud removeFromSuperview];
+            [self removeObserver:self forKeyPath:@"isLoading"];
+        }
+    }
+}
+
+
 
 // ** 初始化选取器的数据模型
 - (void)initPickerDataSource {
@@ -88,7 +116,8 @@
         NSString *item = [dic objectForKey:@"item"];
         if ([item isEqualToString:key]) {
             item = [dic objectForKey:@"name"];
-            self.navigationItem.rightBarButtonItem.title = item;
+//            self.navigationItem.rightBarButtonItem.title = item;
+            [self.valueBtn setTitle:item forState:UIControlStateNormal];
         }
     }
 }
@@ -96,7 +125,7 @@
 - (void)addTableViewToView {
     // ** 配置表头
     self.valueBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    self.valueBtn.frame = CGRectMake(0, 64.0, CGRectGetWidth(self.view.frame), 20);
+    self.valueBtn.frame = CGRectMake(0, 64.0, CGRectGetWidth(self.view.frame), 30);
     self.valueBtn.backgroundColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:255.0/255.0 alpha:1.0];
     [self.valueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.0]];
     [self.valueBtn setTitle:[self.pickerData2[0] objectForKey:@"name"] forState:UIControlStateNormal];
@@ -104,7 +133,7 @@
     [self.valueBtn addTarget:self action:@selector(popupSettingPanel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.valueBtn];
     // ** 配置表格
-    self.table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+20, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-64-20)
+    self.table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+30, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-64-30)
                                               style:UITableViewStylePlain];
     self.table.backgroundColor = [UIColor clearColor];
     self.table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -145,12 +174,12 @@
 }
 
 - (void)downloadDataWithValue:(NSString *)value pageIndex:(NSInteger)index {
-    NSString *url = [NSString stringWithFormat:kUrlTopuser,value,index];
+    NSString *url = [NSString stringWithFormat:kUrlTopuser,value,(long)index];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:config];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSURLSessionDataTask *task = [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        NSLog(@"Download in progress!");
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // ** 获取数据成功
         if (responseObject) {
@@ -177,11 +206,13 @@
             NSLog(@"response data nil");
         }
         // ** 终止刷新
+        [self setIsLoading:NO];
         [self setIsRefreshing:NO];
         [self.table.mj_header endRefreshing];
         [self.table.mj_footer endRefreshing];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         // ** 终止刷新
+        [self setIsLoading:NO];
         [self setIsRefreshing:NO];
         [self.table.mj_header endRefreshing];
         [self.table.mj_footer endRefreshing];
@@ -196,15 +227,13 @@
 }
 // ** 右侧导航栏：查找
 - (void)searchBarItemClick {
-    NSLog(@"Search start!");
     SearchViewController *search = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:search animated:NO];
 }
 // ** 中间按钮，弹出设置
 - (void)popupSettingPanel {
-    NSLog(@"pop up setting panel");
     // ** 弹出选取面板
-    UIView *pickerPanel = [[UIView alloc] initWithFrame:CGRectMake(0, 64+20, CGRectGetWidth(self.view.frame), 150)];
+    UIView *pickerPanel = [[UIView alloc] initWithFrame:CGRectMake(0, 64+30, CGRectGetWidth(self.view.frame), 150)];
     pickerPanel.backgroundColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:255.0/255.0 alpha:1.0];
     pickerPanel.tag = 777;
     // ** 设置选取器
@@ -228,7 +257,6 @@
 }
 // ** 选择器：选择确认
 - (void)valuePickerDone {
-    NSLog(@"value picker done");
     // ** 获取选取器的值
     UIView *pickerPanel  = [self.view viewWithTag:777];
     UIPickerView *picker = [self.view viewWithTag:776];

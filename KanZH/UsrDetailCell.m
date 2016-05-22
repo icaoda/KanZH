@@ -25,7 +25,7 @@
     self.frame = rect;
     self.name  = aName;
     if ([aScale isKindOfClass:[NSNumber class]] == YES) {
-        self.scale = [NSString stringWithFormat:@"%lu",[aScale integerValue]];
+        self.scale = [NSString stringWithFormat:@"%lu",(long)[aScale integerValue]];
     } else {
         self.scale = aScale;
     }

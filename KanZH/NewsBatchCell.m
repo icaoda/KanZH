@@ -7,6 +7,7 @@
 //
 
 #import "NewsBatchCell.h"
+#import "UIImageView+WebCache.h"
 #import "NewsBatch.h"
 #import "Header.h"
 #import "ToolBox.h"
@@ -33,8 +34,8 @@
 - (void)showCellWithNewsBatch:(NewsBatch *)newsBatch {
     CGFloat cellWidth = self.contentView.frame.size.width;
     // ** 1.设置图片
-    self.newsImg.image = [UIImage imageNamed:newsBatch.pic];
-    self.newsImg.image = [UIImage imageNamed:@"place_holder_batch"];
+    [self.newsImg sd_setImageWithURL:[NSURL URLWithString:newsBatch.pic]
+                    placeholderImage:[UIImage imageNamed:@"place_holder_batch"]];
     CGRect imgRect = CGRectMake((cellWidth-200)/2, 0, 200, 100);
     self.newsImg.frame = imgRect;
     // ** 2.设置内容

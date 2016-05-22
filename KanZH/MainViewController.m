@@ -16,6 +16,7 @@
 #import "NewsViewController.h"
 #import "MJRefresh.h"
 #import "AFNetworking.h"
+#import "MBProgressHUD.h"
 #import "AppDelegate.h"
 #import "NewsBatch.h"
 #import "NewsBatchCell.h"
@@ -27,7 +28,8 @@
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, copy) NSString *timeStamp;
-
+// ** Hub相关属性
+@property (nonatomic, assign) BOOL isLoading;// 是否加载完成
 // ** 刷新相关属性
 @property (nonatomic, assign) BOOL isRefreshing;// 是否正在刷新
 @property (nonatomic, assign) BOOL isLast;// 是否是最后一条可加载数据
@@ -42,10 +44,34 @@
     [self addTableViewToView];
     [self setTimeStamp:@""];
     [self setDataSource:[NSMutableArray array]];
-    [self downloadData];
     [self addRefreshViewToTable];
+    [self startLoadingWithActivityView];
 }
 
+#pragma mark - 首次加载数据的MBProgressHUD
+- (void)startLoadingWithActivityView {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Loading...";
+    hud.tag = 111;
+    [self.view addSubview:hud];
+
+    self.isLoading = YES;
+    [self addObserver:self forKeyPath:@"isLoading" options:NSKeyValueObservingOptionNew context:nil];
+    [self downloadData];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"isLoading"]) {
+        if ([[change objectForKey:NSKeyValueChangeNewKey] boolValue] == NO) {
+            MBProgressHUD *hud = [self.view viewWithTag:111];
+            [hud removeFromSuperview];
+            [self removeObserver:self forKeyPath:@"isLoading"];
+        }
+    }
+}
+
+#pragma mark - UI 控件的添加
 - (void)customizeNavigationBar {
     self.navigationItem.title = @"看知乎首页";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-nav"]
@@ -102,14 +128,13 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     // ** 配置Datatask
     NSURLSessionDataTask *task = [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        NSLog(@"Download inprogress!");
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // ** 首次或者向上刷新，清空数据，重新加载
         if ([self.timeStamp isEqualToString:@""]) {
             [self.dataSource removeAllObjects];
         }
         // ** 连接成功，如果数据不为空
-        NSLog(@"sdfldjsfldk");
         if (responseObject) {
             NSString *erro = [responseObject valueForKey:@"error"];
             if ([erro isEqualToString:@""] ) {
@@ -128,12 +153,14 @@
             NSLog(@"Download data error");
         }
         // ** 终止刷新，更新数据
+        self.isLoading = NO;
         [self setIsRefreshing:NO];
         [self.table.mj_header endRefreshing];
         [self.table.mj_footer endRefreshing];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Download data fail: %@",error.description);
         // ** 终止刷新
+        self.isLoading = NO;
         [self setIsRefreshing:NO];
         [self.table.mj_header endRefreshing];
         [self.table.mj_footer endRefreshing];
