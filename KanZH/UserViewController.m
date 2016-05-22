@@ -333,11 +333,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.tag == 100) {
         TopAnswer *ans = self.topAnswers[indexPath.row];
-        NSArray *linkComp = [ans.link componentsSeparatedByString:@"/"];
-        NewsAnswerViewController *ansVC = [NewsAnswerViewController newsAnserWithQuestion:linkComp[2]
-                                                                                   answer:linkComp[4] userHash:nil];
-        ansVC.isPost = ans.ispost;
-        [self.navigationController pushViewController:ansVC animated:NO];
+        if (ans.ispost  == 1) {
+            NewsAnswerViewController *ansVC = [NewsAnswerViewController newsAnswerWithZhuanlan:ans.link];
+            [self.navigationController pushViewController:ansVC animated:NO];
+        } else {
+            NSArray *arr = [ans.link componentsSeparatedByString:@"/"];
+            if (arr.count == 5) {
+                NewsAnswerViewController *ansVC = [NewsAnswerViewController newsAnserWithQuestion:arr[2] answer:arr[4] userHash:nil];
+                [self.navigationController pushViewController:ansVC animated:NO];
+            }
+        }
     }
 }
 

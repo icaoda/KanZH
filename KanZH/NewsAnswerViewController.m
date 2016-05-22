@@ -16,6 +16,9 @@
 @property (nonatomic, copy) NSString *questionid;
 @property (nonatomic, copy) NSString *answerid;
 @property (nonatomic, copy) NSString *authorhash;
+// ** 专栏文章属性
+@property (nonatomic, copy) NSString *zhuanlan;
+@property (nonatomic, assign) BOOL isPost;
 // ** 网页视图容器
 @property (nonatomic, strong) UIWebView *web;
 // ** 进度条属性
@@ -36,6 +39,19 @@
         _answerid = ans;
         _authorhash = usr;
         _isPost = NO;
+    }
+    return self;
+}
+
+// ** 专栏初始化
++ (instancetype)newsAnswerWithZhuanlan:(NSString *)zhuanlan {
+    return [[self alloc] initAnswerWithZhuanlan:zhuanlan];
+}
+
+- (instancetype)initAnswerWithZhuanlan:(NSString *)zhuanlan {
+    if (self=[super init]) {
+        self.zhuanlan = zhuanlan;
+        self.isPost = YES;
     }
     return self;
 }
@@ -64,6 +80,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.progressView removeFromSuperview];
+    [self.web removeFromSuperview];
 }
 
 // ** 配置导航栏
@@ -73,10 +90,12 @@
     question.tag = 555;
     UIBarButtonItem *author = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-author"] style:UIBarButtonItemStylePlain target:self action:@selector(barItemClick:)];
     author.tag = 556;
-    if (self.authorhash == nil) {
-        self.navigationItem.rightBarButtonItems = @[question];
-    } else {
-        self.navigationItem.rightBarButtonItems = @[question,author];
+    if (self.isPost == NO) {
+        if (self.authorhash == nil) {
+            self.navigationItem.rightBarButtonItems = @[question];
+        } else {
+            self.navigationItem.rightBarButtonItems = @[question,author];
+        }
     }
 }
 // ** 添加web view
@@ -85,8 +104,7 @@
     if (self.isPost == NO) {
         urlstring = [NSString stringWithFormat:kUrlAnswer,_questionid,_answerid];
     } else {
-        urlstring = [NSString stringWithFormat:kUrlAnswerZhanLan,_questionid,_answerid];
-
+        urlstring = [NSString stringWithFormat:kUrlAnswerZhanLan,_zhuanlan];
     }
     NSURLRequest *requst = [NSURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
     [self.web loadRequest:requst];

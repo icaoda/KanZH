@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSString *link;
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, assign) NSNumber *agree;
-@property (nonatomic, assign) BOOL *ispost;
+@property (nonatomic, assign) NSInteger ispost;
 
 // ** 构造方法
 + (instancetype)topAnswerWithDictionary:(NSDictionary *)dic;

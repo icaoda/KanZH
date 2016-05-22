@@ -41,11 +41,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self customizeNavigationBar];
-    [self addTableViewToView];
     [self setTimeStamp:@""];
     [self setDataSource:[NSMutableArray array]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self addTableViewToView];
     [self addRefreshViewToTable];
     [self startLoadingWithActivityView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.table removeFromSuperview];
 }
 
 #pragma mark - 首次加载数据的MBProgressHUD

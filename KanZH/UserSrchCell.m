@@ -7,6 +7,7 @@
 //
 
 #import "UserSrchCell.h"
+#import "UIImageView+WebCache.h"
 #import "UserSrch.h"
 #import "Header.h"
 
@@ -38,7 +39,8 @@
 
 - (void)showCellWithUserSrch:(UserSrch *)user {
     // ** 1.设置头像
-    self.avatar.image = [UIImage imageNamed:@"avatar_holder"];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatar]
+                   placeholderImage:[UIImage imageNamed:@"avatar_holder"]];
     self.avatar.layer.masksToBounds = YES;
     self.avatar.layer.cornerRadius = 42;
     // ** 2.设置所有label的值

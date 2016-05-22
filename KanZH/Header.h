@@ -40,7 +40,7 @@
 #define kUrlQuestion @"http://www.zhihu.com/question/%@"
 //          答案链接      @para：参数1--问题id,参数2--答案id
 #define kUrlAnswer @"http://www.zhihu.com/question/%@/answer/%@"
-#define kUrlAnswerZhanLan @"http://www.zhuanlan.zhihu.com/question/%@/answer/%@"
+#define kUrlAnswerZhanLan @"https://zhuanlan.zhihu.com%@"
 //          用户主页      @para：参数--用户哈希
 #define kUrlUserpage @"http://www.zhihu.com/people/%@"
 // ----------------------------------------------------------- //

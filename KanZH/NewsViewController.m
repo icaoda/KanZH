@@ -59,12 +59,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configNavigationBar];
-    [self addTableViewToView];
-    [self addMJRefreshToTable];
     [self setCurrentDate:_date];
     [self setCurrentName:_name];
     [self setDataSource:[NSMutableArray array]];
     [self startLoadingWithActivityView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self addTableViewToView];
+    [self addMJRefreshToTable];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.table removeFromSuperview];
 }
 
 #pragma mark - 首次加载数据的MBProgressHUD
@@ -111,10 +120,7 @@
 // ** 添加table做新闻容器
 - (void)addTableViewToView {
     // ** 配置表格
-    CGRect rect = self.view.bounds;
-    rect.origin.y    += 20.0;
-    rect.size.height -= 20.0;
-    self.table = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
+    self.table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+20, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-64-20) style:UITableViewStylePlain];
     self.table.separatorStyle = UITableViewCellSelectionStyleNone;
     self.table.delegate = self;
     self.table.dataSource = self;

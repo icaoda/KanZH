@@ -7,6 +7,7 @@
 //
 
 #import "UserDetailCell.h"
+#import "UIImageView+WebCache.h"
 #import "UserDetail.h"
 #import "Header.h"
 
@@ -29,7 +30,8 @@
 
 - (void)showCellWithUserDetail:(UserDetail *)user {
     // ** 1.赋值
-    self.avatar.image = [UIImage imageNamed:@"avatar_holder"];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatar]
+                   placeholderImage:[UIImage imageNamed:@"avatar_holder"]];
     self.nameLabel.text = user.name;
     self.sigLabel.text = user.signature;
     self.desLabel.text = user.uDescription;
